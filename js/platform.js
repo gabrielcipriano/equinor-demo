@@ -4,7 +4,7 @@ import { loadFilesGLTF } from './loader.js';
 // import * as THREE from 'https://unpkg.com/three/build/three.module.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import main_objects from './../info.json'
+import main_objects from './../public/info.json'
 
 const DEFAULT_TITLE = 'Selecione uma estrutura'
 

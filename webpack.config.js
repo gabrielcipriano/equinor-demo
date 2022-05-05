@@ -4,7 +4,7 @@ module.exports = {
   entry: './js/platform.js',
 
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve('public/dist'),
     filename: 'main.js',
   },
 }
