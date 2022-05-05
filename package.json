@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "webpack",
-    "five-server": "npx five-server . --port 8000",
+    "five-server": "npx five-server . --port=8000",
+    "start": "npx five-server . --port=$PORT",
     "webpack-dev": "npx webpack -w --mode development"
   },
   "dependencies": {
