@@ -60,17 +60,21 @@ function renderCaptions(captions){
   // captions = Object.entries(captions).map((k,v)=>v['name']=k)
   const template = document.getElementById('captionsTemplate').innerHTML;
   const rendered = Mustache.render(template, {captions});
-  console.log(rendered)
   document.getElementById('renderBodyTarget').innerHTML = rendered;
 }
 
 function renderImageGallery(structureGalleryName) {
   renderTitle(main_objects[structureGalleryName].humanName)
 
-  console.log(main_objects[structureGalleryName])
-
   const structure = main_objects[structureGalleryName]
   if(!structure) return;
+
+  const bodyTarget = document.getElementById('renderBodyTarget')
+
+  if(structure.images.length === 0){
+    bodyTarget.innerHTML = Mustache.render('<p class="text-gray-600 p-2" >No momento não foram encontradas imagens para esta estrutura.</p>');
+    return;
+  }
 
   const galleryView = {
     images: structure.images,
@@ -82,7 +86,7 @@ function renderImageGallery(structureGalleryName) {
 
   const template = document.getElementById('galleryTemplate').innerHTML;
   const rendered = Mustache.render(template, galleryView);
-  document.getElementById('renderBodyTarget').innerHTML = rendered;
+  bodyTarget.innerHTML = rendered;
 
   const imgs = document.querySelectorAll('#renderBodyTarget img');
   imgs.forEach(img => {
@@ -92,8 +96,6 @@ function renderImageGallery(structureGalleryName) {
       const target = main_objects[structureName].images.find(x=>x.name === imgName)
       const captions = target.segments
 
-      console.log(captions)
-
       renderTitle(main_objects[structureName].humanName + ' - Legenda:')
       renderCaptions(captions)
 
@@ -101,7 +103,6 @@ function renderImageGallery(structureGalleryName) {
       const modal = document.getElementById("myModal");
       modalImg.src = img.src;
       modal.style.display = 'block';
-      console.log(modalImg)
     });
   });
 }
